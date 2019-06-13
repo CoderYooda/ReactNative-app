@@ -1,72 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { AsyncStorage } from 'react-native'
+import { Provider } from 'react-redux'
+import { persistStore } from 'redux-persist'
+import immutableTransform from 'redux-persist-transform-immutable'
+import store from './App/Store'
+import Root from './App/Root'
 
-import {createStackNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation';
-
-import {
-    Avatar,
-    StreamApp,
-    IconBadge,
-} from 'expo-activity-feed';
-
-import ProfileScreen from './pages/ProfilePage';
-import HomeScreen from './pages/HomePage';
-import Icon from "./components/Icon";
-
-
-const doNotShowHeaderOption = {
-    navigationOptions: {
-        header: null,
-    },
-};
-
-const TabNavigator = createBottomTabNavigator(
+export default class Login extends React.Component {
+    componentDidMount()
     {
-        Home: HomeScreen,
-        Search: ProfileScreen,
-        Notifications: HomeScreen,
-        Profile: HomeScreen,
-    },
+      persistStore(store, {storage: AsyncStorage, transforms: [immutableTransform()], whitelist: ['auth']})
+    }
+    render()
     {
-        navigationOptions: ({ navigation }) => ({
-            tabBarIcon: () => {
-                const { routeName } = navigation.state;
-                if (routeName === 'Home') {
-                    return <Icon name="home" />;
-                } else if (routeName === 'Search') {
-                    return <Icon name="search" />;
-                } else if (routeName === 'Notifications') {
-                    return (
-                        <IconBadge showNumber>
-                            <Icon name="notifications" />
-                        </IconBadge>
-                    );
-                } else if (routeName === 'Profile') {
-                    return (
-                        <Avatar
-                            source={(userData: UserResponse) => userData.data.profileImage}
-                            size={25}
-                            noShadow
-                        />
-                    );
-                }
-            },
-        }),
-        initialRouteName: 'Home',
-    },
-);
-
-const Navigation = createStackNavigator({
-    Tabs: {
-        screen: TabNavigator,
-        ...doNotShowHeaderOption,
-    },
-    Home: {screen: HomeScreen},
-    Profile: {screen: ProfileScreen},
-});
-
-const App = createAppContainer(Navigation);
-
-export default App;
-
-
+      return (
+          <Provider store={store}>
+            <Root/>
+          </Provider>
+      );
+    }
+}

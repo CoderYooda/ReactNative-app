@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Project",
-    "slug": "proj",
+    "name": "Central optic",
+    "slug": "copt",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
@@ -23,7 +23,11 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.webstyle.coderyooda"
+    },
     "ios": {
+      "bundleIdentifier": "com.webstyle.copt",
       "supportsTablet": true
     }
   }

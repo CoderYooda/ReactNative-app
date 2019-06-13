@@ -1,17 +1,16 @@
 import React, {Component}  from "react";
-import {StyleSheet, Button, View, Text} from "react-native";
+import {StyleSheet,Text} from "react-native";
+import { Header } from 'react-navigation';
 
-class Header extends Component  {
-
-
+class Headera extends Component  {
     render() {
         return (
-            <Text style={styles.header}>123</Text>
+            <Text style={styles.header}></Text>
         );
     }
 }
 
-export default Header
+export default Headera
 
 const styles = StyleSheet.create({
     header: {
