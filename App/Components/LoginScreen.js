@@ -19,7 +19,7 @@ class LoginScreen extends React.Component {
         alert(1);
         let {auth} = this.props;
         if (auth.access_token !== '') {
-            console.log(this.props.auth);
+            //console.log(this.props.auth);
             await AsyncStorage.setItem('auth', this.props.auth.access_token);
             this.props.navigation.navigate('App');
         } else {

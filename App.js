@@ -1,22 +1,21 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native'
-import { Provider } from 'react-redux'
-import { persistStore } from 'redux-persist'
-import immutableTransform from 'redux-persist-transform-immutable'
-import store from './App/Store'
-import Root from './App/Root'
+import Login from './App/Components/Login'
+import Home from './App/Root'
+import {createAppContainer, createStackNavigator, createSwitchNavigator} from "react-navigation";
 
-export default class Login extends React.Component {
-    componentDidMount()
+
+
+//const AppStack = createStackNavigator({ Home: Indexer, Other: TextPage });
+const AuthStack = createStackNavigator({ Login: Login });
+
+export default createAppContainer(createSwitchNavigator(
     {
-      persistStore(store, {storage: AsyncStorage, transforms: [immutableTransform()], whitelist: ['auth']})
-    }
-    render()
+        // AuthLoading: AuthLoadingScreen,
+        // App: AppStack,
+        Auth: AuthStack,
+        Home: Home,
+    },
     {
-      return (
-          <Provider store={store}>
-            <Root/>
-          </Provider>
-      );
+        initialRouteName: 'Auth',
     }
-}
+));

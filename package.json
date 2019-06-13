@@ -11,6 +11,7 @@
     "expo": "^33.0.0",
     "expo-activity-feed": "^0.8.9",
     "fs": "0.0.1-security",
+    "native-base": "^2.12.1",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
@@ -33,7 +34,8 @@
     "rn-nodeify": "^10.0.1"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.2.0"
+    "babel-preset-expo": "^5.2.0",
+    "redux-devtools": "^3.5.0"
   },
   "postinstall": "node_modules/.bin/rn-nodeify --install crypto,fs,https --hack",
   "private": true
