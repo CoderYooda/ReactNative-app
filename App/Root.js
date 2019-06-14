@@ -6,15 +6,26 @@ import {
     StyleSheet,
     Button,
     View,
+    Text
 } from 'react-native';
 
-import {Container, Content, Header, Left, Body, Icon} from 'native-base'
+import {Container, Content, Header, Left, Body} from 'native-base'
 
-import {createSwitchNavigator, createStackNavigator,DrawerItems, createAppContainer, createDrawerNavigator} from 'react-navigation';
+import {createSwitchNavigator, createStackNavigator, DrawerItems, createAppContainer, createDrawerNavigator} from 'react-navigation';
 import Image from "react-native-web/src/exports/Image";
+import SideMenu from '../components/SideMenu';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 class HomeScreen extends React.Component {
+
+    static navigationOptions = {
+        drawerLabel: 'Главная',
+        drawerIcon:({TinColor}) => <Text>123</Text>,
+        //drawerLabel: () => <Text>222</Text>
+    };
+
+
 
     constructor(props)
     {
@@ -33,10 +44,10 @@ class HomeScreen extends React.Component {
             </View>
         );
     }
-    _signOutAsync = async () => {
-        //await AsyncStorage.clear();
-
+    _signOutAsync = () => {
+        AsyncStorage.clear();
         this.props.navigation.navigate('Auth');
+        console.warn('На логин');
     };
 }
 
@@ -58,10 +69,19 @@ const MyDrawerNavigator = createDrawerNavigator(
         Home: {
             screen: HomeScreen,
         },
+        Home2: {
+            screen: HomeScreen,
+        },
+        Home3: {
+            screen: HomeScreen,
+        },
+        Home4: {
+            screen: HomeScreen,
+        },
     },
     {
         initialRouteName: "Home",
-        contentComponent: customNavigator
+        contentComponent: SideMenu
     });
 
 
@@ -71,38 +91,11 @@ export default class Home extends React.Component {
     render() {
         return (
             <View style={{flex:1}} >
+                {/*<Text style={{height:28, backgroundColor: 'rgba(51, 51, 51, 1)'}}/>*/}
                 <AppContainer />
             </View>
-
         );
     }
 }
-
-
-// class AuthLoadingScreen extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this._bootstrapAsync();
-//     }
-//
-//     // Fetch the token from storage then navigate to our appropriate place
-//     _bootstrapAsync = async () => {
-//         const auth = await AsyncStorage.getItem('auth');
-//         console.log(auth);
-//         // This will switch to the App screen or Auth screen and this loading
-//         // screen will be unmounted and thrown away.
-//         this.props.navigation.navigate(auth !== '' ? 'App' : 'Auth', {auth:auth});
-//     };
-//
-//     // Render any loading content that you like here
-//     render() {
-//         return (
-//             <View>
-//                 <ActivityIndicator />
-//                 <StatusBar barStyle="default" />
-//             </View>
-//         );
-//     }
-// }
 
 

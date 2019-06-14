@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, TextInput, AsyncStorage, Button } from 'react-n
 import styles from './styles'
 export default class Login extends React.Component {
     static navigationOptions = {
-        header: null,
     };
 
     state = {phone: "", password: ""}
