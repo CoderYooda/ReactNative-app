@@ -8,7 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^33.0.0",
+    "expo": "^46.0.14",
     "expo-activity-feed": "^0.8.9",
     "fs": "0.0.1-security",
     "native-base": "^2.12.1",
